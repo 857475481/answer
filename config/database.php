@@ -48,15 +48,6 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-<<<<<<< HEAD
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-=======
             'database' => env('DB_DATABASE', 'qa'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', 'SWP4syAFJfcraG4Y'),
@@ -64,7 +55,6 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => 'answer_',
->>>>>>> b61b926f6f2f84d63b0fbcdfe73276a2c1eafc48
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,

@@ -20,10 +20,10 @@ class QuestionController extends Controller
         $questions=[];
         $item=[];
         // $n=$request->input('n');  //需要随机抽取题目的数量
-        mt_srand();  //生成随机数种子
+          //生成随机数种子
         $res=Question::all(); //获得所有题目,不直接抽题是因为题目的id如果缺少了，生成随机数刚好命中,会出错,取得所有的记录以后保证索引都是存在的。
         for($i=0;$i< $n;$i++){
-
+            mt_srand();
             $questions[]=$res[mt_rand(0,$res->count()-1)];
         }
         foreach ($questions as $key => $value) {
