@@ -51,7 +51,8 @@ class QuestionController extends Controller
                         'value'=>'D'
                     ]
 
-                ]
+                    ],
+                "an"=>$value['an']
             ];
             # code...
         }
