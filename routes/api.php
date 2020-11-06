@@ -26,5 +26,6 @@ Route::get('/excel',[QuestionController::class,'import']);
 Route::get('/ExtractQuestion/{n}', [QuestionController::class,'ExtractQuestion']);
 
 
-
+Route::post('/record',[RankController::class,'Record']);
 Route::get('/login/{code}',[RankController::class,'login']);
+Route::get('/getRank',[RankController::class,'getRank']);
