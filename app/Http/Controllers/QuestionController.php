@@ -19,58 +19,44 @@ class QuestionController extends Controller
     public function ExtractQuestion($n/*Request $request*/){
         $questions=[];
         $item=[];
-        // $n=$request->input('n');  //需要随机抽取题目的数量
-        mt_srand();  //生成随机数种子
-        $res=Question::all(); //获得所有题目,不直接抽题是因为题目的id如果缺少了，生成随机数刚好命中,会出错,取得所有的记录以后保证索引都是存在的。
-        for($i=0;$i< $n;$i++){
-
-            $questions[]=$res[mt_rand(0,$res->count()-1)];
-        }
+        // $n=$request->input('n');
+      
+        $res=Question::all()->toArray();
+    
+        $questions=array_rand($res, $n);
+      
+        // var_dump($res[$questions[2]]['q']);
+        // exit();
         foreach ($questions as $key => $value) {
             $item[]=[
-                "question"=>$value['q'],
+                "question"=>$res[$value]['q'],
                 "option"=>[
                     [
                         'id'=>1,
-                        'name'=>$value['a'],
+                        'name'=>$res[$value]['a'],
                         'value'=>'A'
                     ],
                     [
                         'id'=>1,
-                        'name'=>$value['b'],
+                        'name'=>$res[$value]['b'],
                         'value'=>'B'
                     ],
                     [
                         'id'=>1,
-                        'name'=>$value['c'],
+                        'name'=>$res[$value]['c'],
                         'value'=>'C'
                     ],
                     [
                         'id'=>1,
-                        'name'=>$value['d'],
+                        'name'=>$res[$value]['d'],
                         'value'=>'D'
                     ]
 
-                ]
+                ],
+                "an"=>$res[$value]['an']
             ];
-            # code...
         }
         return $item;
-        // for($j=0;$j<10;$j++){
-        //     $questions=[];
-
-        // for($i=0;$i<10;$i++){
-
-        //     $questions[]=$res[mt_rand(0,$res->count()-1)];
-        // }
-
-        // foreach ($questions as $key => $value) {
-        //     # code...
-        //     echo $value['id'].'</br>';
-        // }
-        // echo '--------------------------------------------------------------';
-        // }
-
 
 
     }

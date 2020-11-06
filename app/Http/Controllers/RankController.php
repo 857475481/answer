@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\FromCollection;
 class RankController extends Controller
 {
+    
+    public function login($code){
+        return $code;
+    }
     /**
      * Display a listing of the resource.
      *
