@@ -52,8 +52,10 @@ class QuestionController extends Controller
                         'value'=>'D'
                     ]
 
+
                 ],
                 "an"=>$res[$value]['an']
+
             ];
         }
         return $item;
