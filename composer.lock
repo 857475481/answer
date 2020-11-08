@@ -5,10 +5,14 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "content-hash": "4deb35de4e68dc5901eae1c6b53a976b",
 =======
     "content-hash": "8455d85ec02c9c19c42ff7015295f68f",
 >>>>>>> b61b926f6f2f84d63b0fbcdfe73276a2c1eafc48
+=======
+    "content-hash": "6f4d38116961f641cddc436bef3c8d76",
+>>>>>>> 83cf0f34ef8a30e4bb3355008a15fdad617ba3cc
     "packages": [
         {
             "name": "asm89/stack-cors",

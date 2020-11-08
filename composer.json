@@ -11,14 +11,10 @@
         "php": "^7.4|^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^8.12",
-<<<<<<< HEAD
-        "laravel/tinker": "^2.5"
-=======
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1"
->>>>>>> b61b926f6f2f84d63b0fbcdfe73276a2c1eafc48
     },
     "require-dev": {
         "facade/ignition": "^2.5",

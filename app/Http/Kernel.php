@@ -15,16 +15,12 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
-        \App\Http\Middleware\TrustProxies::class,
+        // \App\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
-<<<<<<< HEAD
-        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-=======
         // \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
->>>>>>> b61b926f6f2f84d63b0fbcdfe73276a2c1eafc48
     ];
 
     /**
@@ -44,8 +40,8 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            // 'throttle:api',
+            // \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
