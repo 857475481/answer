@@ -9,7 +9,28 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 class RankController extends Controller
 {
-   
+    public function getUserById(Request $req){
+        $openid=$req->input('uid');
+        return Rank::where(['openid'=>$openid])->first();
+        
+    }
+    public function uIsE($id){
+        if(Rank::where(['openid'=>$id])->count()>0)
+           {
+               return ['status'=>true];
+           }else {
+               return ['status'=>false];
+               // code...
+           }
+    }
+    public function login2($code){
+        $appid=config('wechat.miniprogram.appid');
+        $secret=config('wechat.miniprogram.secret');
+         $res= Http::get("https://api.weixin.qq.com/sns/jscode2session?appid=$appid&secret=$secret&js_code=$code&grant_type=authorization_code");
+         return  $res;
+        
+        
+    }
     public function login($code){
         $appid=config('wechat.miniprogram.appid');
         $secret=config('wechat.miniprogram.secret');
@@ -18,27 +39,51 @@ class RankController extends Controller
            if(Rank::where(['openid'=>$res['openid']])->count()<=0)
            {
                  Rank::create(['openid'=>$res['openid']]);
-                 return   $res;
+             
+                 return  $res;
            }
 
          }
-        return $res;
+      
+                  
+                //  var_dump($res);
+                //  exit();
+              
+                  return $res;
     }
     public function getRank(){
-        return Rank::all();
+        $res=Rank::where('score','>',0)->orderBy('score','desc')->get();
+      
+        return $res;
     }
     public function Record(Request $request){
-        $openid=$request->input('id');
-        $score=$request->input('score');
-        $nickname=$request->input('name');
-        $url=$request->input('url');
+        $openid=$request->input('uid');
+        
+        $res=$request->input('res');
+        
+        if($res){
+            $score=$request->input('score');
+           
         $count=$request->input('jishicount');
-        return Rank::where([
-            'openid'=>$openid,
-        ])->update([
-            'jishicount'=>$count,
-            'score'=>$score
+              $rank= Rank::where([
+            'openid'=>$openid
+        ])->increment('score',$score);
+       return $rank= Rank::where([
+            'openid'=>$openid
+        ])->increment('jishicount',$count);
+        }else{
+              $nickname=$request->input('name');
+        $url=$request->input('url');
+         return     Rank::where([
+            'openid'=>$openid])->update([
+            'name'=>$nickname,
+            'url'=> $url
         ]);
+        }
+      
+       
+        // dump($rank);
+        // exit();
         
     }
     /**

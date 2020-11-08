@@ -24,8 +24,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/rank',[RankController::class,'show']);
 Route::get('/excel',[QuestionController::class,'import']);
 Route::get('/ExtractQuestion/{n}', [QuestionController::class,'ExtractQuestion']);
-
+Route::post('/getUserById',[RankController::class,'getUserById']);
 
 Route::post('/record',[RankController::class,'Record']);
 Route::get('/login/{code}',[RankController::class,'login']);
+Route::get('/login2/{code}',[RankController::class,'login2']);
 Route::get('/getRank',[RankController::class,'getRank']);
+Route::get('/uIsE/{id}',[RankController::class,'uIsE']);
