@@ -53,6 +53,10 @@ class RankController extends Controller
     }
     public function getRank(){
         $res=Rank::where('score','>',0)->orderBy('score','desc')->get();
+        foreach ($res as $k=>$v)
+        {
+            $v['name']=base64_decode($v['name']);
+        }
       
         return $res;
     }
@@ -76,7 +80,7 @@ class RankController extends Controller
         $url=$request->input('url');
          return     Rank::where([
             'openid'=>$openid])->update([
-            'name'=>$nickname,
+            'name'=>base64_encode($nickname),
             'url'=> $url
         ]);
         }
