@@ -20,7 +20,7 @@ class RankController extends Controller
                return ['status'=>true];
            }else {
                return ['status'=>false];
-               // code...
+              
            }
     }
     public function login2($code){
@@ -44,15 +44,10 @@ class RankController extends Controller
            }
 
          }
-      
-                  
-                //  var_dump($res);
-                //  exit();
-              
                   return $res;
     }
     public function getRank(){
-        $res=Rank::where('score','>',0)->orderBy('score','desc')->get();
+        $res=Rank::where('score','>',0)->orderBy('score','desc')->orderBy('jishicount','asc')->get();
         foreach ($res as $k=>$v)
         {
             $v['name']=base64_decode($v['name']);
@@ -62,9 +57,7 @@ class RankController extends Controller
     }
     public function Record(Request $request){
         $openid=$request->input('uid');
-        
         $res=$request->input('res');
-        
         if($res){
             $score=$request->input('score');
            
@@ -85,64 +78,14 @@ class RankController extends Controller
         ]);
         }
       
-       
-        // dump($rank);
-        // exit();
         
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+  
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Rank  $rank
-     * @return \Illuminate\Http\Response
-     */
     public function show(Rank $rank)
     {
         //
         return $rank->all();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rank  $rank
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Rank $rank)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Rank  $rank
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Rank $rank)
-    {
-        //
-    }
 }
