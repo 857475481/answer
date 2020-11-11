@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/excel',[QuestionController::class,'import']);
+Route::post('/excel',[QuestionController::class,'import']);
 Route::get('/ExtractQuestion/{n}', [QuestionController::class,'ExtractQuestion']);
 
 Route::post('/getUserById',[RankController::class,'getUserById']);
