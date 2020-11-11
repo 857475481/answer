@@ -22,39 +22,46 @@ class QuestionController extends Controller
         // $n=$request->input('n');
       
         $res=Question::all()->toArray();
-    
-        $questions=array_rand($res, $n);
+        // dump($res);
+        // exit();
+        mt_srand(time()*$n);
+        for($i=0;$i<$n;$i++)
+        {
+             
+            $questions[]=$res[mt_rand(0,count($res)-1)];
+        }
+        // $questions=array_rand($res, $n);
       
         // var_dump($res[$questions[2]]['q']);
         // exit();
         foreach ($questions as $key => $value) {
             $item[]=[
-                "question"=>$res[$value]['q'],
+                "question"=>$value['q'],
                 "option"=>[
                     [
                         'id'=>1,
-                        'name'=>$res[$value]['a'],
+                        'name'=>$value['a'],
                         'value'=>'A'
                     ],
                     [
                         'id'=>1,
-                        'name'=>$res[$value]['b'],
+                        'name'=>$value['b'],
                         'value'=>'B'
                     ],
                     [
                         'id'=>1,
-                        'name'=>$res[$value]['c'],
+                        'name'=>$value['c'],
                         'value'=>'C'
                     ],
                     [
                         'id'=>1,
-                        'name'=>$res[$value]['d'],
+                        'name'=>$value['d'],
                         'value'=>'D'
                     ]
 
 
                 ],
-                "an"=>$res[$value]['an']
+                "an"=>$value['an']
 
             ];
         }
