@@ -20,18 +20,18 @@ class QuestionController extends Controller
         $questions=[];
         $item=[];
         // $n=$request->input('n');
-      
+
         $res=Question::all()->toArray();
         // dump($res);
         // exit();
         mt_srand(time()*$n);
         for($i=0;$i<$n;$i++)
         {
-             
+
             $questions[]=$res[mt_rand(0,count($res)-1)];
         }
         // $questions=array_rand($res, $n);
-      
+
         // var_dump($res[$questions[2]]['q']);
         // exit();
         foreach ($questions as $key => $value) {
@@ -69,5 +69,5 @@ class QuestionController extends Controller
 
 
     }
-    
+
 }
