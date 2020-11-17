@@ -81,7 +81,9 @@ class RankController extends Controller
 
     }
 
-
+    public function ClearScoreAndTime(){
+        Rank::where([['score','>',0],['jishicount','>',0]])->update(['score'=>0,'jishicount'=>0]);
+    }
     public function show(Rank $rank)
     {
         //
