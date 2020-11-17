@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DayRank;
 use App\Models\Rank;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -58,6 +59,8 @@ class RankController extends Controller
     public function Record(Request $request){
         $openid=$request->input('uid');
         $res=$request->input('res');
+        $nickname=$request->input('name');
+        $url=$request->input('url');
         if($res){
             $score=$request->input('score');
            
@@ -68,9 +71,9 @@ class RankController extends Controller
        return $rank= Rank::where([
             'openid'=>$openid
         ])->increment('jishicount',$count);
+        DayRank::record($openid,$score,$count,$nickname,$url,date("Ymd"));
         }else{
-              $nickname=$request->input('name');
-        $url=$request->input('url');
+             
          return     Rank::where([
             'openid'=>$openid])->update([
             'name'=>base64_encode($nickname),
