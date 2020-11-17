@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 class RankController extends Controller
 {
-   
+
     public function login($code){
         $appid=config('wechat.miniprogram.appid');
         $secret=config('wechat.miniprogram.secret');
@@ -39,27 +39,10 @@ class RankController extends Controller
             'jishicount'=>$count,
             'score'=>$score
         ]);
-        
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    }
+    public function ClearScoreAndTime(){
+        Rank::where([['score','>',0],['jishicount','>',0]])->update(['score'=>0,'jishicount'=>0]);
     }
 
     /**
@@ -74,26 +57,5 @@ class RankController extends Controller
         return $rank->all();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rank  $rank
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Rank $rank)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Rank  $rank
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Rank $rank)
-    {
-        //
-    }
 }
