@@ -9,5 +9,5 @@ class Rank extends Model
 {
     use HasFactory;
      public $timestamps = false;
-     protected $fillable =['openid'];
+     protected $fillable =['openid','score','url','name','jishicount'];
 }

@@ -24,9 +24,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function(){
+           mt_srand(time());
+          echo   DB::table('ranks')->insertGetId(['score' => mt_rand(), 'jishicount' =>mt_rand(5,100)])->everyMinute();
+                // $schedule->command('inspire')->hourly();
+            });
+        
     }
-
     /**
      * Register the commands for the application.
      *

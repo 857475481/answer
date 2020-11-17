@@ -8,25 +8,41 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
-
-class QuestionsImport implements ToCollection
+set_time_limit(0);
+class QuestionsImport implements ToModel//ToCollection
 {
 
-    public function collection(Collection $rows)
+    // public function collection(Collection $rows)
+    // {
+    //     // dump($rows[0][5]);
+    //     // exit();
+    //     foreach ($rows as $k=>$row) {
+            
+            
+    //             // dump($row[0]);
+            
+    //         Question::create([
+    //             'q' => $row[0],
+    //             'a' => $row[1],
+    //             'b' => $row[2],
+    //             'c' => $row[3],
+    //             'd' => $row[4],
+    //             'an' => $row[5]
+    //         ]);
+    //     }
+    //     // exit();
+    // }
+    public function model(array $row)
     {
-        // dump($rows);
+        // dump($row);
         // exit();
-        foreach ($rows as $row) {
-
-
-            Question::create([
-                'q' => $row[0],
+        return new Question([
+            'q' => $row[0],
                 'a' => $row[1],
                 'b' => $row[2],
                 'c' => $row[3],
                 'd' => $row[4],
                 'an' => $row[5]
-            ]);
-        }
+        ]);
     }
 }
