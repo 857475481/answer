@@ -14,7 +14,7 @@ class QuestionController extends Controller
     public function import(){
      $question=new    QuestionsImport();
     Excel::import(new QuestionsImport,request()->file('que')); //,null, \Maatwebsite\Excel\Excel::XLSX
-
+    return redirect('/');
     }
     public function ExtractQuestion($n/*Request $request*/){
         $questions=[];

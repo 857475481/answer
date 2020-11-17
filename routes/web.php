@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return '上传成功!';
 });
 Route::any('/upload', function () {
    return view('uploadQuestion'); 
