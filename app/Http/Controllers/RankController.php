@@ -13,7 +13,7 @@ class RankController extends Controller
     public function getUserById(Request $req){
         $openid=$req->input('uid');
         return Rank::where(['openid'=>$openid])->first();
-        
+
     }
     public function uIsE($id){
         if(Rank::where(['openid'=>$id])->count()>0)
@@ -21,7 +21,7 @@ class RankController extends Controller
                return ['status'=>true];
            }else {
                return ['status'=>false];
-              
+
            }
     }
     public function login2($code){
@@ -29,8 +29,8 @@ class RankController extends Controller
         $secret=config('wechat.miniprogram.secret');
          $res= Http::get("https://api.weixin.qq.com/sns/jscode2session?appid=$appid&secret=$secret&js_code=$code&grant_type=authorization_code");
          return  $res;
-        
-        
+
+
     }
     public function login($code){
         $appid=config('wechat.miniprogram.appid');
@@ -40,7 +40,7 @@ class RankController extends Controller
            if(Rank::where(['openid'=>$res['openid']])->count()<=0)
            {
                  Rank::create(['openid'=>$res['openid']]);
-             
+
                  return  $res;
            }
 
@@ -53,7 +53,7 @@ class RankController extends Controller
         {
             $v['name']=base64_decode($v['name']);
         }
-      
+
         return $res;
     }
     public function Record(Request $request){
@@ -63,7 +63,7 @@ class RankController extends Controller
         $url=$request->input('url');
         if($res){
             $score=$request->input('score');
-           
+
         $count=$request->input('jishicount');
               $rank= Rank::where([
             'openid'=>$openid
@@ -80,11 +80,13 @@ class RankController extends Controller
             'url'=> $url
         ]);
         }
-      
-        
-    }
-  
 
+
+    }
+
+    public function ClearScoreAndTime(){
+        Rank::where([['score','>',0],['jishicount','>',0]])->update(['score'=>0,'jishicount'=>0]);
+    }
     public function show(Rank $rank)
     {
         //
