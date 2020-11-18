@@ -11,7 +11,7 @@ class DayRank extends Model
     use HasFactory;
     protected $fillable =['openid','score','url','name','jishicount','openid','mytime'];
     public static function record($openid,$score,$time,$name,$url,$date){
-        return DayRank::create([
+        return self::create([
              'openid'=>$openid,
              'score'=>$score,
              'jishicount'=>$time,
