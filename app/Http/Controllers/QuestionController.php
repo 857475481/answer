@@ -26,7 +26,7 @@ class QuestionController extends Controller
         $res=Question::all()->toArray();
         // dump($res);
         // exit();
-        mt_srand(time()*$n);
+        // mt_srand(time()*$n);
         for($i=0;$i<$n;$i++)
         {
 
