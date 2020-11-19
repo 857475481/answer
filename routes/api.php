@@ -28,6 +28,7 @@ Route::get('clear',[RankController::class,'ClearScoreAndTime']);
 Route::post('/record',[RankController::class,'Record']);
 Route::get('/login/{code}',[RankController::class,'login']);
 Route::get('/getRank',[RankController::class,'getRank']);
+Route::get('/getRank2',[RankController::class,'getRank']);
 Route::post('/getUserById',[RankController::class,'getUserById']);
 Route::post('/record',[RankController::class,'Record']);
 Route::get('/login/{code}',[RankController::class,'login']);
