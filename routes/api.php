@@ -4,6 +4,8 @@ use App\Http\Controllers\RankController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RecordController;
 use App\Models\Rank;
+use App\Models\Record;
+use Illuminate\Support\Facades\DB;
 use App\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +42,7 @@ Route::get('/answer/getAnswered/{openid}/{count}',[RecordController::class,'getA
 Route::post('/config',function(Request $req){
     $n=$req->input('questionnum');
     $t=$req->input('atime');
-    Config::where('id',1)->update([
+   return Config::where('id',1)->update([
         'question_num'=>$n,
         'answer_time'=>$t
     
@@ -48,4 +50,7 @@ Route::post('/config',function(Request $req){
 });
 Route::get('/getConfig',function(){
     return Config::find(1);
+});
+Route::get('/clearRecord',function(){
+    return  DB::table('records')->delete();
 });

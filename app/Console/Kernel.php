@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
+use App\Models\Rank;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -25,8 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function(){
-           mt_srand(time());
-          echo   DB::table('ranks')->insertGetId(['score' => mt_rand(), 'jishicount' =>mt_rand(5,100)])->everyMinute();
+            Rank::where([['dayscore','>=',0],['daycount','>=',0]])->update(['dayscore'=>0,'daycount'=>0]);
+    
                 // $schedule->command('inspire')->hourly();
             });
         

@@ -15,7 +15,7 @@ class QuestionController extends Controller
      $question=new    QuestionsImport();
     Excel::import(new QuestionsImport,request()->file('que')); //,null, \Maatwebsite\Excel\Excel::XLSX
 
-    return redirect('/',['msg'=>'上传成功']);
+    return redirect('/',301,['msg'=>'上传成功']);
 
     }
     public function ExtractQuestion($n/*Request $request*/){
