@@ -48,7 +48,16 @@ class RankController extends Controller
                   return $res;
     }
     public function getRank(){
-        $res=Rank::where('score','>',0)->orderBy('score','desc')->orderBy('jishicount','asc')->orderBy('day_score','desc')->orderBy('day_count','asc')->get();
+        $res=Rank::where('score','>',0)->orderBy('score','desc')->orderBy('jishicount','asc')->get();
+        foreach ($res as $k=>$v)
+        {
+            $v['name']=base64_decode($v['name']);
+        }
+
+        return $res;
+    }
+    public function getRank2(){
+        $res=Rank::where('day_score','>',0)->orderBy('day_score','desc')->orderBy('day_count','asc')->get();
         foreach ($res as $k=>$v)
         {
             $v['name']=base64_decode($v['name']);
@@ -68,20 +77,20 @@ class RankController extends Controller
             $score=$request->input('score');
 
         $count=$request->input('jishicount');
-        
+
         $rank->increment('score',$score);
         $rank->increment('jishicount',$count);
         $rank->update([
             'day_score'=>$score,
             'day_count'=>$count
-            
+
         ]);
     //   return $rank= Rank::where([
     //         'openid'=>$openid
     //     ])->increment('jishicount',$count);
       //  DayRank::record($openid,$score,$count,$nickname,$url,date("Ymd"));
         }else{
-             
+
          return     Rank::where([
             'openid'=>$openid])->update([
             'name'=>base64_encode($nickname),
