@@ -45,7 +45,7 @@ Route::post('/config',function(Request $req){
    return Config::where('id',1)->update([
         'question_num'=>$n,
         'answer_time'=>$t
-    
+
     ]);
 });
 Route::get('/getConfig',function(){
@@ -54,3 +54,4 @@ Route::get('/getConfig',function(){
 Route::get('/clearRecord',function(){
     return  DB::table('records')->delete();
 });
+Route::get('/sss',[RankController::class,'export']);

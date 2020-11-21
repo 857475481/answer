@@ -7,9 +7,14 @@ use App\Models\Rank;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RanksExport;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 class RankController extends Controller
 {
+    public function export(){
+        return Excel::download(new RanksExport, date("排行榜成绩Y-m-d").'.xlsx');
+    }
     public function getUserById(Request $req){
         $openid=$req->input('uid');
         return Rank::where(['openid'=>$openid])->first();
