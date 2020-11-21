@@ -1,7 +1,7 @@
 <?php
 
 //1.建立连接
-$connect=mysqli_connect('106.14.62.38','root','SWP4syAFJfcraG4Y','qa','3306');
+$connect=mysqli_connect('43.226.33.210','root','NGLLFnjZehwJfjjZ','qa','3306');
 //2.定义sql语句
 $sql="truncate table answer_questions;";
 mysqli_query($connect,'set names utf8');
