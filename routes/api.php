@@ -54,4 +54,4 @@ Route::get('/getConfig',function(){
 Route::get('/clearRecord',function(){
     return  DB::table('records')->delete();
 });
-Route::get('/sss',[RankController::class,'export']);
+Route::get('/exportExcel',[RankController::class,'export']);

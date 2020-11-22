@@ -87,7 +87,10 @@ class RankController extends Controller
         $rank->increment('jishicount',$count);
         $rank->update([
             'dayscore'=>$score,
-            'daycount'=>$count
+            'daycount'=>$count,
+            'daybeforescore'=>$score,
+             'daybeforecount'=>$count,
+            
 
         ]);
         }else{

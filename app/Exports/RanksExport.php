@@ -11,8 +11,13 @@ class RanksExport implements FromCollection
     */
     public function collection()
     {
-        $rank= new Rank(['openid','name','url','score','mytime','daybeforescore','daybeforecount']);
-        return $rank->all();
+        $rank= new Rank();
+        $res= $rank->all(['name','url','mytime','daybeforescore','daybeforecount']);
+        foreach ($res as $v){
+             $v->name=base64_decode($v->name);
+            
+        }
+        return $res;
         //
     }
 }
