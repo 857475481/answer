@@ -42,7 +42,7 @@ class QuestionsImport implements ToModel//ToCollection
                 'b' => $row[2],
                 'c' => $row[3],
                 'd' => $row[4],
-                'an' => $row[5]
+                'an' => strtoupper($row[5])
         ]);
     }
 }

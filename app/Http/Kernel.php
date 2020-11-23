@@ -41,7 +41,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            \App\Http\Middleware\ControllerCheat::class,
+            // \App\Http\Middleware\ControllerCheat::class,
             // 'throttle:api',
             // \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
