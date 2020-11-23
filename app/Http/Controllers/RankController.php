@@ -80,19 +80,13 @@ class RankController extends Controller
         ]);
         if($res){
             $score=$request->input('score');
-
-        $count=$request->input('jishicount');
-
-        $rank->increment('score',$score);
-        $rank->increment('jishicount',$count);
-        $rank->update([
-            'dayscore'=>$score,
-            'daycount'=>$count,
-            'daybeforescore'=>$score,
-             'daybeforecount'=>$count,
-            
-
-        ]);
+            $count=$request->input('jishicount');
+            $rank->increment('score',$score);
+            $rank->increment('jishicount',$count);
+            $rank->update([
+                'dayscore'=>$score,
+                'daycount'=>$count
+            ]);
         }else{
 
          return     Rank::where([

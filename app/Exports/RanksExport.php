@@ -15,7 +15,6 @@ class RanksExport implements FromCollection
         $res= $rank->all(['name','url','mytime','daybeforescore','daybeforecount']);
         foreach ($res as $v){
              $v->name=base64_decode($v->name);
-            
         }
         return $res;
         //

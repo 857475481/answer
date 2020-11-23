@@ -55,3 +55,13 @@ Route::get('/clearRecord',function(){
     return  DB::table('records')->delete();
 });
 Route::get('/exportExcel',[RankController::class,'export']);
+Route::get('/test',function(){
+     $res=Rank::all();
+     
+            foreach ($res as $obj) {
+              $obj->daybeforescore=$obj->dayscore;
+              $obj->daybeforecount=$obj->daycount;
+            echo  $obj->save();
+            }
+    
+});
