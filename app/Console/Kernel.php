@@ -26,7 +26,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function(){
-            Rank::where([['dayscore','>=',0],['daycount','>=',0]])->update(['dayscore'=>0,'daycount'=>0]);
+            foreach (Rank::all() as $obj) {
+                $obj->update([
+                    'daybeforescore'=>$obj->dayscore,
+                    'daybeforecount'=>$obj->daycount
+                ]);
+            }
+           // Rank::where([['dayscore','>=',0],['daycount','>=',0]])->update(['dayscore'=>0,'daycount'=>0]);
     
                 // $schedule->command('inspire')->hourly();
             });
